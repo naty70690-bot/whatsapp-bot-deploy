@@ -121,6 +121,39 @@ expor-localhost.bat   # Ver todas opções
 - **Hobby**: $5/mês (recomendado para vendas)
 - **Pro**: $10/mês (alta performance)
 
+## 🚀 **Deploy Imediato**
+
+Para fazer deploy AGORA mesmo:
+
+```bash
+# Deploy completo automático
+deploy-completo.bat
+```
+
+Ou passo a passo:
+```bash
+# 1. Preparar
+preparar-deploy.bat
+
+# 2. Push para GitHub
+push-github.bat
+
+# 3. Deploy no Railway
+# Acesse: https://railway.app
+```
+
+### 📋 **O que Acontece:**
+
+1. ✅ **Projeto preparado** para produção
+2. ✅ **Build do frontend** otimizado
+3. ✅ **Código no GitHub** versionado
+4. ✅ **Deploy no Railway** automático
+5. ✅ **URL pública** gerada
+
+### 💰 **Custos:**
+- **Railway Free**: Até 512MB RAM
+- **Railway Hobby**: $5/mês (recomendado)
+
 ---
 
 **Desenvolvido com ❤️ para automação de WhatsApp**
