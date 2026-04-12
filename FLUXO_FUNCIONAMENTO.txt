@@ -1,0 +1,192 @@
+🔄 FLUXO DE FUNCIONAMENTO - RESPOSTA AUTOMÁTICA
+═════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│ ANTES (Com palavra-chave específica)                        │
+└─────────────────────────────────────────────────────────────┘
+
+    Pessoa manda mensagem
+           ↓
+    ✓ Se contém "olá" → Bot responde "Olá!"
+    ✗ Se contém "oi" → Bot NÃO responde
+    ✗ Se contém qualquer coisa → Bot NÃO responde
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ AGORA (Com asterisco *)                                     │
+└─────────────────────────────────────────────────────────────┘
+
+    Pessoa manda mensagem (QUALQUER coisa)
+           ↓
+    "olá" ✓ Bot responde
+    "oi" ✓ Bot responde
+    "😊" ✓ Bot responde
+    "" ✓ Bot responde
+    Qualquer coisa ✓ Bot responde
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ LÓGICA DO BOT (Como funciona por trás)                      │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────┐
+│ Mensagem Recebida                │
+└──────────────────────────────────┘
+        ↓
+        ├─ Procura por palavra-chave ESPECÍFICA
+        │  └─ "preço", "oi", "olá", etc
+        │     ↓
+        │     ✓ Encontrou? → Responde!
+        │     ✗ Não encontrou? ↓
+        │
+        ├─ Procura por "*" (asterisco/global)
+        │  └─ "*" = qualquer mensagem
+        │     ↓
+        │     ✓ Encontrou? → Responde!
+        │     ✗ Não encontrou? ↓
+        │
+        └─ Não responde nada
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ EXEMPLO 1: Apenas Resposta Global (*)                       │
+└─────────────────────────────────────────────────────────────┘
+
+Configuração:
+┌──────────────────────────────────────┐
+│ Chat ID: 5511999999999               │
+│ Palavra-chave: *                     │
+│ Resposta: Obrigado! Responderemos!   │
+└──────────────────────────────────────┘
+
+Resultado:
+├─ Pessoa manda: "oi" 
+│   └─ Bot: "Obrigado! Responderemos!"
+├─ Pessoa manda: "qual é o preço?"
+│   └─ Bot: "Obrigado! Responderemos!"
+├─ Pessoa manda: "😊"
+│   └─ Bot: "Obrigado! Responderemos!"
+└─ Pessoa manda: Qualquer mensagem
+    └─ Bot: "Obrigado! Responderemos!"
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ EXEMPLO 2: Resposta Específica + Global (*)                 │
+└─────────────────────────────────────────────────────────────┘
+
+Configuração:
+┌──────────────────────────────────────────┐
+│ Resposta 1:                              │
+│ ├─ Palavra-chave: "preço"                │
+│ └─ Resposta: "Custa R$ 99,90"             │
+│                                           │
+│ Resposta 2:                              │
+│ ├─ Palavra-chave: "*"                    │
+│ └─ Resposta: "Msg recebida!"             │
+└──────────────────────────────────────────┘
+
+Resultado (PRECEDÊNCIA):
+├─ Pessoa manda: "preço" 
+│   └─ Procura "preço" → ENCONTROU!
+│   └─ Bot: "Custa R$ 99,90" ← Resposta ESPECÍFICA (mais relevante)
+│
+├─ Pessoa manda: "qual é o preço?"
+│   └─ Procura "preço" → ENCONTROU!
+│   └─ Bot: "Custa R$ 99,90" ← Contém a palavra
+│
+├─ Pessoa manda: "oi"
+│   └─ Procura "preço" → NÃO encontrou
+│   └─ Procura "*" → ENCONTROU!
+│   └─ Bot: "Msg recebida!" ← Resposta GENÉRICA
+│
+└─ Pessoa manda: "tudo bem?"
+    └─ Procura "preço" → NÃO encontrou
+    └─ Procura "*" → ENCONTROU!
+    └─ Bot: "Msg recebida!" ← Resposta GENÉRICA
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ EXEMPLO 3: Múltiplas Palavras-chave + Global                │
+└─────────────────────────────────────────────────────────────┘
+
+Configuração:
+┌──────────────────────────────────────────┐
+│ Resposta 1: trigger="preço" → "R$ 99,90" │
+│ Resposta 2: trigger="oi" → "Oi! Bem-vindo!" │
+│ Resposta 3: trigger="*" → "Msg recebida!"│
+└──────────────────────────────────────────┘
+
+Resultado (MELHOR MATCH):
+├─ "preço?" → "R$ 99,90" (match específico)
+├─ "oi tudo bem?" → "Oi! Bem-vindo!" (match "oi")
+├─ "😊" → "Msg recebida!" (match global "*")
+└─ "cadastro" → "Msg recebida!" (match global "*")
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ TRIGGERS ACEITOS                                             │
+└─────────────────────────────────────────────────────────────┘
+
+Para GLOBAL (qualquer mensagem):
+├─ "*" ← RECOMENDADO!
+├─ "qualquer"
+└─ (na verdade, qualquer palavra funciona, mas * é mais clara)
+
+Para ESPECÍFICO:
+├─ "olá"
+├─ "oi"
+├─ "preço"
+├─ "help"
+├─ "abrir ticket"
+├─ Qualquer palavra ou frase!
+└─ (case-insensitive: "OLÁ" = "olá" = "oLá")
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ ORDEM DE PROCESSAMENTO                                      │
+└─────────────────────────────────────────────────────────────┘
+
+1º → Procura por PALAVRA-CHAVE ESPECÍFICA (mais relevante)
+     ├─ Se encontra → Responde e PARA
+
+2º → Procura por "*" GLOBAL
+     ├─ Se encontra → Responde e PARA
+
+3º → Se nenhum dos acima → Não responde
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ CHECKLIST DO FLUXO                                          │
+└─────────────────────────────────────────────────────────────┘
+
+[✓] Mensagem chega no WhatsApp
+[✓] Backend detecta mensagem
+[✓] Procura por configurações do contato
+[✓] Verifica palavra-chave específica
+[✓] Se não achar, verifica "*"
+[✓] Se encontrar, envia resposta automática
+[✓] Histórico é registrado no banco de dados
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ DICAS DE IMPLEMENTAÇÃO                                      │
+└─────────────────────────────────────────────────────────────┘
+
+✅ USAR:
+├─ Respostas específicas para perguntas comuns
+├─ Global (*) como fallback/resposta padrão
+└─ Combine ambas para melhor experiência!
+
+❌ EVITAR:
+├─ Usar "*" para TUDO (parecerá robô)
+├─ Respostas muito longas no "*"
+└─ Sem contexto na resposta automática
+
+💡 MELHOR PRÁTICA:
+├─ "*" para: "Olá! Obrigado. Responderemos em breve."
+├─ "preço" para: "Custa R$ 99,90"
+├─ "oi" para: "Oi! Como posso ajudar?"
+└─ "help" para: "Opções: 1.Preço 2.Suporte 3.Outro"
+
+
+═════════════════════════════════════════════════════════════

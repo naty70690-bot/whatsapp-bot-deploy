@@ -1,0 +1,176 @@
+🤖 **WhatsApp Automated Bot** - Quick Start Guide
+================================================
+
+📍 **Lokação**: C:\Users\cauaaa\Documents\whatsapp-bot
+
+## ✨ Funcionalidades
+
+- ✅ Conexão via QR Code do WhatsApp
+- ✅ Configurar respostas automáticas por palavra-chave
+- ✅ Gerenciar clientes e histórico de mensagens
+- ✅ Painel web intuitivo e responsivo
+- ✅ Banco de dados SQLite local
+- ✅ API REST completa
+
+## 🛠️ Tecnologias
+
+BACKEND:
+├─ Node.js + Express
+├─ whatsapp-web.js (integração WhatsApp)
+├─ SQLite3 (banco de dados)
+└─ QRCode (geração de QR)
+
+FRONTEND:
+├─ React 18
+├─ Axios (requisições HTTP)
+└─ CSS3 (responsivo e moderno)
+
+## 🚀 Como Começar
+
+### 1️⃣ Instale Node.js
+   - Visite: https://nodejs.org/
+   - Baixe a versão LTS
+   - ⚠️ Marque "Add to PATH" durante install
+   - Reinicie o terminal
+
+### 2️⃣ Abra 2 Terminais
+
+**Terminal 1 - Backend:**
+```
+cd C:\Users\cauaaa\Documents\whatsapp-bot\backend
+npm install
+npm start
+```
+
+**Terminal 2 - Frontend:**
+```
+cd C:\Users\cauaaa\Documents\whatsapp-bot\frontend
+npm install
+npm start
+```
+
+### 3️⃣ Acesse no Navegador
+```
+http://localhost:3000
+```
+
+### 4️⃣ Conectar WhatsApp
+- Escaneie o QR Code com WhatsApp
+- Vá em: Configurações > Aparelhos conectados > Conectar aparelho
+
+### 5️⃣ Configure Respostas Automáticas
+- Aba: "Mensagens Automáticas"
+- Adicione: Chat ID, Palavra-chave, Resposta
+- ✓ Pronto! Bot responderá automaticamente
+
+## 📂 Estrutura
+
+```
+whatsapp-bot/
+├── backend/
+│   ├── models/
+│   │   └── database.js         ← Gerenciador BD
+│   ├── routes/
+│   │   ├── automated.js        ← Rotas mensagens
+│   │   └── client.js           ← Rotas clientes
+│   ├── server.js               ← Servidor
+│   ├── package.json
+│   └── .env
+│
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── QRPanel.*       ← Painel QR
+│   │   │   ├── AutomatedMessages.*
+│   │   │   └── ClientsList.*
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   └── index.css
+│   └── package.json
+│
+├── README.md                    ← Docs completa
+├── SETUP.md                     ← Setup detalhado
+└── .gitignore
+```
+
+## 🔗 API Endpoints
+
+### QR Code
+- `GET /api/qr`                      → Status + QR
+- `GET /api/status`                  → Status conexão
+
+### Mensagens Automáticas
+- `GET /api/automated`               → Todas
+- `GET /api/automated/:chatId`       → Por chat
+- `POST /api/automated`              → Criar
+- `PUT /api/automated/:id`           → Editar
+- `DELETE /api/automated/:id`        → Deletar
+
+### Clientes
+- `GET /api/client`                  → Todos
+- `GET /api/client/:chatId/history`  → Histórico
+- `POST /api/client`                 → Criar/Atualizar
+
+## ⚙️ Variáveis de Ambiente
+
+`.env` do Backend:
+```
+PORT=5000
+NODE_ENV=development
+```
+
+## 🐛 Problemas Comuns
+
+| Problema | Solução |
+|----------|---------|
+| npm not found | Node.js não instalado ou terminal não reiniciado |
+| Porta 5000 em uso | Mudar `PORT` em backend/.env |
+| WhatsApp não conecta | Verificar internet, reiniciar backend |
+| BD corrompido | Deletar `whatsapp_bot.db` e reiniciar |
+
+## 📖 Documentação
+
+- **README.md**: Documentação completa do projeto
+- **SETUP.md**: Guia detalhado de instalação
+- **Código**: Bem comentado e organizado
+
+## 💾 Banco de Dados
+
+- **Tipo**: SQLite3
+- **Arquivo**: `whatsapp_bot.db` (criado automaticamente)
+- **Tabelas**:
+  - `automated_messages`  → Respostas configuradas
+  - `chat_history`        → Histórico de mensagens
+  - `clients`             → Lista de contatos
+
+## 🔐 Segurança
+
+⚠️ **Importante**:
+- Use apenas para fins pessoais/educacionais
+- Respeite os termos de serviço do WhatsApp
+- Suas credenciais WhatsApp ficam locais no arquivo `.wwebjs_auth/`
+- Não compartilhe o banco de dados
+
+## 🚀 Próximas Funcionalidades Planeadas
+
+- [ ] Agendamento de mensagens
+- [ ] Variáveis dinâmicas ({nome}, {data}, etc)
+- [ ] Integração com APIs
+- [ ] Autenticação de usuários
+- [ ] Múltiplas contas WhatsApp
+- [ ] Dashboard com estatísticas
+- [ ] Backup automático
+
+## ❓ Dúvidas?
+
+1. Verifique `README.md` e `SETUP.md`
+2. Veja console do backend para erros
+3. Verifique console do navegador (F12) para erros frontend
+4. Teste conexão internet
+5. Reinicie backend e frontend
+
+---
+
+**Criado com ❤️ - WhatsApp Bot 2026**
