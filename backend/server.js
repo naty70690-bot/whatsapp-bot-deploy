@@ -220,6 +220,19 @@ clientRouter.setDatabase(db);
 app.use('/api/automated', automatedRouter);
 app.use('/api/client', clientRouter);
 
+// Serve frontend build in production
+if (process.env.NODE_ENV === 'production') {
+  const frontendBuildPath = path.join(__dirname, '../frontend/build');
+  app.use(express.static(frontendBuildPath));
+  
+  // Fallback to index.html for SPA routing
+  app.get('*', (req, res) => {
+    if (!req.url.startsWith('/api')) {
+      res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    }
+  });
+}
+
 // QR Code endpoint - Optimized
 app.get('/api/qr', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');

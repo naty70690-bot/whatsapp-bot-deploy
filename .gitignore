@@ -25,3 +25,49 @@ logs/
 *.temp
 Thumbs.db
 ehthumbs.db
+
+# Documentation files (not needed in production)
+*.txt
+CHANGELOG.md
+COMMANDS.md
+DEPLOY-GUIDE.md
+DEPLOY_README.md
+DOCUMENTACAO_INDICE.txt
+FLUXO_FUNCIONAMENTO.txt
+IMPLEMENTAÇÃO_CONCLUÍDA.txt
+INICIO_RAPIDO.md
+LISTAGEM_COMPLETA.txt
+MENSAGENS_SEPARADAS_GUIA.md
+MENSAGENS_SEPARADAS_IMPLEMENTADO.md
+MUDANCAS_CODIGO.txt
+OTIMIZACOES_CONCLUIDAS.md
+QUALQUER_MENSAGEM.txt
+QUICK_START.txt
+RESPOSTA_AUTOMATICA.md
+RESUMO_FINAL.txt
+SETUP.md
+STATUS_FINAL.md
+TELEGRAM_IMPLEMENTADO.md
+TELEGRAM_INTEGRACAO.md
+TELEGRAM_NAO_POSSIVEL.md
+TELEGRAM_REMOVIDO.md
+VISUALIZACAO_FINAL.txt
+WHATSAPP_TELEGRAM_COMPLETO.txt
+
+# Test files
+test-connectivity.bat
+testar-rede-local.bat
+usar-ngrok.bat
+usar-localtunnel.bat
+expor-localhost.bat
+
+# Batch scripts (Windows only)
+*.bat
+railway-deploy.sh
+
+# Package manager
+dist/
+.pkg/
+
+# Build artifacts
+frontend/build/

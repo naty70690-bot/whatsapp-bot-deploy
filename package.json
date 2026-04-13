@@ -1,0 +1,26 @@
+{
+  "name": "whatsapp-bot-railway",
+  "version": "1.0.0",
+  "description": "WhatsApp Bot for Automated Responses - Production Ready",
+  "main": "backend/server.js",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "cd backend && npm start",
+    "heroku-postbuild": "cd frontend && npm install && npm run build",
+    "dev": "cd backend && npm run dev"
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "automation",
+    "responses"
+  ],
+  "author": "WhatsApp Bot Team",
+  "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
